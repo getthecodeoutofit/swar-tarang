@@ -296,7 +296,7 @@ window.addEventListener('load', () => {
     const heroTitle = document.querySelector('.hero-title');
     if (heroTitle) {
         setTimeout(() => {
-            typeWriter(heroTitle, 'Swarg Tarang', 150);
+            typeWriter(heroTitle, 'Swar Tarang', 150);
         }, 500);
     }
 });
