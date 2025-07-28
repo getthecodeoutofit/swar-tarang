@@ -121,6 +121,7 @@ body {
     justify-content: center;
     position: relative;
     overflow: hidden;
+    padding-top: 80px; /* Add padding to prevent content from hiding under navbar */
 }
 
 .hero-background {
@@ -227,9 +228,28 @@ body {
 
 .hero-visual {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
+    gap: 2rem;
+}
+
+.club-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-logo {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    animation: fadeInUp 1s ease 1s both;
 }
 
 .music-notes {
@@ -762,6 +782,12 @@ body {
     opacity: 0.9;
 }
 
+.year {
+    font-size: 0.7rem;
+    opacity: 0.8;
+    margin-top: 2px;
+}
+
 .announcement-content h4 {
     font-size: 1.2rem;
     font-weight: 600;
@@ -893,18 +919,36 @@ body {
         display: flex;
     }
     
+    .hero {
+        padding-top: 100px; /* Increase padding for mobile */
+        min-height: 100vh;
+    }
+    
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 2rem;
+        padding: 0 1rem;
     }
     
     .hero-title {
         font-size: 2.5rem;
+        margin-top: 1rem;
+    }
+    
+    .hero-logo {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .music-notes {
+        width: 200px;
+        height: 200px;
     }
     
     .hero-stats {
         justify-content: center;
+        flex-wrap: wrap;
     }
     
     .about-content {
@@ -928,6 +972,22 @@ body {
     .footer-content {
         grid-template-columns: 1fr;
         text-align: center;
+    }
+    
+    .nav-container {
+        padding: 0.8rem 1rem;
+    }
+    
+    .logo-img {
+        height: 40px;
+    }
+    
+    .logo-text h2 {
+        font-size: 1.2rem;
+    }
+    
+    .logo-text span {
+        font-size: 0.7rem;
     }
 }
 
