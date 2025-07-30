@@ -564,6 +564,111 @@ body {
     margin-left: auto;
 }
 
+/* Faculty Coordinators Section */
+.faculty-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+.faculty-card {
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    padding: 2.5rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid #e5e7eb;
+    position: relative;
+    overflow: hidden;
+}
+
+.faculty-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+}
+
+.faculty-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    border-color: #6366f1;
+}
+
+.faculty-image {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+}
+
+.faculty-image i {
+    color: white;
+    font-size: 2.5rem;
+}
+
+.faculty-card h4 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.faculty-designation {
+    color: #6366f1;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.faculty-significance {
+    margin-bottom: 1.5rem;
+}
+
+.faculty-significance p {
+    color: #4b5563;
+    line-height: 1.7;
+    font-size: 1rem;
+    text-align: left;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #6366f1;
+}
+
+.faculty-skills {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.faculty-skills span {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.faculty-skills span:hover {
+    transform: translateY(-2px);
+}
+
 .member-bar {
     flex: 1;
     height: 8px;
@@ -988,6 +1093,34 @@ body {
     
     .logo-text span {
         font-size: 0.7rem;
+    }
+    
+    .faculty-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .faculty-card {
+        padding: 2rem;
+        min-width: auto;
+    }
+    
+    .faculty-image {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .faculty-image i {
+        font-size: 2rem;
+    }
+    
+    .faculty-card h4 {
+        font-size: 1.2rem;
+    }
+    
+    .faculty-significance p {
+        padding: 1rem;
+        font-size: 0.9rem;
     }
 }
 
