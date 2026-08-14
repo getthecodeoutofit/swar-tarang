@@ -40,38 +40,51 @@ body {
 .navbar {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     z-index: 1000;
-    transition: all 0.3s ease;
-    border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    border-bottom-color: rgba(203, 213, 225, 0.6);
 }
 
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.8rem 2rem;
-    max-width: 1250px;
+    padding: 0.65rem 2rem;
+    max-width: 1350px;
     margin: 0 auto;
 }
 
 .nav-logo {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.75rem;
+    text-decoration: none;
+    transition: transform 0.25s ease;
+}
+
+.nav-logo:hover {
+    transform: scale(1.02);
 }
 
 .logo-img {
-    height: 44px;
+    height: 42px;
     width: auto;
     object-fit: contain;
-    background: white;
+    background: #ffffff;
     padding: 3px;
     border-radius: 10px;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
 .club-logo-nav {
@@ -80,35 +93,52 @@ body {
     box-shadow: 0 3px 12px rgba(99, 102, 241, 0.3);
 }
 
+.gehu-logo-nav {
+    border: 1px solid #e2e8f0;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
 .logo-text h2 {
-    color: var(--primary-color);
-    font-weight: 700;
-    font-size: 1.35rem;
-    line-height: 1.2;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    font-size: 1.3rem;
+    line-height: 1.15;
+    letter-spacing: -0.3px;
 }
 
 .logo-text span {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     color: var(--text-muted);
-    font-weight: 500;
-    letter-spacing: 0.5px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
 }
 
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 1.5rem;
+    gap: 1.1rem;
     align-items: center;
 }
 
 .nav-link {
     text-decoration: none;
     color: var(--text-main);
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: color 0.3s ease;
+    font-weight: 600;
+    font-size: 0.88rem;
+    transition: all 0.25s ease;
     position: relative;
-    padding: 0.3rem 0;
+    padding: 0.4rem 0.2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -119,38 +149,57 @@ body {
     content: '';
     position: absolute;
     width: 0;
-    height: 2px;
+    height: 2.5px;
     bottom: 0;
     left: 0;
-    background: var(--primary-color);
+    background: linear-gradient(90deg, var(--primary-color), #8b5cf6);
+    border-radius: 2px;
     transition: width 0.3s ease;
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link.active-link::after {
     width: 100%;
+}
+
+.nav-link.active-link {
+    color: var(--primary-color);
 }
 
 .freshers-tab {
     color: #e11d48;
-    font-weight: 600;
+    background: rgba(225, 29, 72, 0.08);
+    border: 1px solid rgba(225, 29, 72, 0.2);
+    padding: 0.3rem 0.75rem !important;
+    border-radius: 50px;
+    transition: all 0.25s ease;
 }
 
 .freshers-tab:hover {
     color: #be123c;
+    background: rgba(225, 29, 72, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(225, 29, 72, 0.15);
+}
+
+.freshers-tab::after {
+    display: none;
 }
 
 .nav-btn-highlight {
     background: linear-gradient(135deg, var(--primary-color), #8b5cf6);
     color: white !important;
-    padding: 0.5rem 1.2rem !important;
+    padding: 0.45rem 1.1rem !important;
     border-radius: 50px;
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
     transition: all 0.3s ease !important;
+    font-weight: 600;
 }
 
 .nav-btn-highlight:hover {
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.02);
     box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+    color: white !important;
 }
 
 .nav-btn-highlight::after {
@@ -162,14 +211,37 @@ body {
     flex-direction: column;
     cursor: pointer;
     gap: 5px;
+    padding: 0.4rem;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.hamburger:hover {
+    background: rgba(99, 102, 241, 0.08);
 }
 
 .hamburger span {
-    width: 26px;
-    height: 3px;
+    width: 24px;
+    height: 2.5px;
     background: var(--text-main);
     border-radius: 3px;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+}
+
+body.menu-open {
+    overflow: hidden;
 }
 
 /* Hero Section */
@@ -1450,9 +1522,9 @@ body {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
     .navbar {
-        padding: 0.6rem 0;
+        padding: 0.2rem 0;
     }
 
     .nav-container {
@@ -1462,19 +1534,19 @@ body {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 65px;
+        top: 60px;
         flex-direction: column;
         background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         width: 100%;
-        height: calc(100vh - 65px);
+        height: calc(100vh - 60px);
         justify-content: flex-start;
         align-items: center;
-        padding: 2.5rem 1.5rem;
-        gap: 1.5rem;
+        padding: 2.2rem 1.5rem;
+        gap: 1.2rem;
         transition: left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 15px 35px rgba(15, 23, 42, 0.12);
         overflow-y: auto;
         display: flex;
     }
@@ -1484,15 +1556,23 @@ body {
     }
 
     .nav-link {
-        font-size: 1.1rem;
-        padding: 0.5rem 1rem;
+        font-size: 1.05rem;
+        padding: 0.6rem 1rem;
         width: 100%;
         text-align: center;
+        justify-content: center;
+    }
+
+    .freshers-tab {
+        width: auto;
+        padding: 0.5rem 1.5rem !important;
     }
 
     .nav-btn-highlight {
         width: 80%;
+        max-width: 280px;
         text-align: center;
+        justify-content: center;
         padding: 0.8rem 1.5rem !important;
         font-size: 1.05rem;
         margin-top: 0.5rem;
@@ -1710,6 +1790,23 @@ body {
 }
 
 @media (max-width: 480px) {
+    .nav-container {
+        padding: 0.4rem 0.8rem;
+    }
+
+    .logo-img {
+        height: 34px;
+        padding: 2px;
+    }
+
+    .logo-text h2 {
+        font-size: 1.1rem;
+    }
+
+    .logo-text span {
+        font-size: 0.62rem;
+    }
+
     .hero-title {
         font-size: 2.1rem;
     }
@@ -1741,3 +1838,186 @@ body {
         width: 100%;
     }
 }
+
+/* ==========================================
+   Our Current Active Team Instagram Section
+   ========================================== */
+.active-team-section {
+    padding: 6rem 0;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    position: relative;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.insta-section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(45deg, rgba(240, 148, 51, 0.12), rgba(225, 48, 108, 0.12), rgba(131, 58, 180, 0.12));
+    border: 1px solid rgba(225, 48, 108, 0.3);
+    color: #e1306c;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+}
+
+.active-team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.2rem;
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
+.active-team-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 2.5rem 1.8rem;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.active-team-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.active-team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(225, 48, 108, 0.15);
+    border-color: rgba(225, 48, 108, 0.3);
+}
+
+.active-team-card:hover::before {
+    opacity: 1;
+}
+
+.insta-avatar-wrapper {
+    margin-bottom: 1.2rem;
+}
+
+.insta-avatar-ring {
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.active-team-card:hover .insta-avatar-ring {
+    transform: scale(1.08) rotate(5deg);
+}
+
+.insta-avatar-inner {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e1306c;
+    font-size: 2.2rem;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.active-team-card:hover .insta-avatar-inner {
+    background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+    color: #ffffff;
+}
+
+.active-member-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.3rem;
+}
+
+.insta-handle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #e1306c;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.insta-handle:hover {
+    color: #bc1888;
+    transform: scale(1.03);
+}
+
+.active-member-role {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    background: #f1f5f9;
+    padding: 0.25rem 0.8rem;
+    border-radius: 50px;
+}
+
+.insta-follow-btn {
+    margin-top: auto;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+    background-size: 200% 200%;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.7rem 1.4rem;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(225, 48, 108, 0.25);
+    transition: all 0.3s ease;
+}
+
+.insta-follow-btn:hover {
+    background-position: right center;
+    box-shadow: 0 8px 25px rgba(225, 48, 108, 0.45);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 992px) {
+    .active-team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.8rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .active-team-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+

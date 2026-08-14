@@ -16,14 +16,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Navbar scroll effect
+const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 80) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = '0 4px 25px rgba(0, 0, 0, 0.1)';
+    if (window.scrollY > 40) {
+        navbar.classList.add('scrolled');
     } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.92)';
-        navbar.style.boxShadow = 'none';
+        navbar.classList.remove('scrolled');
     }
 });
 
@@ -35,14 +33,37 @@ if (hamburger && navMenu) {
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
     });
 
     // Close mobile menu when clicking on a link
     document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
+        document.body.classList.remove('menu-open');
     }));
 }
+
+// Active link scroll-spy
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+    const scrollY = window.pageYOffset;
+    const navHeight = navbar ? navbar.offsetHeight : 70;
+
+    sections.forEach(current => {
+        const sectionHeight = current.offsetHeight;
+        const sectionTop = current.offsetTop - navHeight - 60;
+        const sectionId = current.getAttribute('id');
+        const navLink = document.querySelector(`.nav-menu a[href*=${sectionId}]`);
+
+        if (navLink) {
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active-link'));
+                navLink.classList.add('active-link');
+            }
+        }
+    });
+});
 
 // Intersection Observer for animations
 const observerOptions = {
@@ -76,7 +97,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe elements for animation
-document.querySelectorAll('.team-card, .event-card, .gallery-item, .announcement-card, .trophy-item, .member-categories, .highlight-card').forEach(el => {
+document.querySelectorAll('.team-card, .event-card, .gallery-item, .announcement-card, .trophy-item, .member-categories, .highlight-card, .active-team-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(25px)';
     el.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
@@ -213,40 +234,5 @@ function createFloatingNote() {
 }
 
 setInterval(createFloatingNote, 3500);
-
-// Keyframe Styles
-const customStyle = document.createElement('style');
-customStyle.textContent = `
-    @keyframes floatUp {
-        0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
-        100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
-    }
-    
-    @media (max-width: 768px) {
-        .nav-menu {
-            position: fixed;
-            left: -100%;
-            top: 65px;
-            flex-direction: column;
-            background-color: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            width: 100%;
-            text-align: center;
-            transition: 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            padding: 2rem 0;
-            gap: 1.5rem;
-        }
-        
-        .nav-menu.active {
-            left: 0;
-        }
-        
-        .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-        .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-    }
-`;
-document.head.appendChild(customStyle);
 
 console.log('Swar Tarang Music Club Website Loaded Successfully! 🎵');
